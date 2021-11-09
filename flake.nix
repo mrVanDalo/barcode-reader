@@ -11,6 +11,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
+        packages.barcode-reader = pkgs.callPackage ./default.nix { };
         defaultPackage = pkgs.callPackage ./default.nix { };
         # nix develop
         devShell = pkgs.mkShell {
