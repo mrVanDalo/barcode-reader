@@ -1,12 +1,12 @@
 { stdenv, ... }:
 stdenv.mkDerivation {
-  name = "fnord-4.5";
+  name = "barcode-reader";
   src = ./.;
   buildPhase = ''
-    gcc main.c -o fnord
+    gcc main.c -o barcode-reader
   '';
   installPhase = ''
     mkdir -p $out/bin
-    cp fnord $out/bin
+    cp barcode-reader $out/bin
   '';
 }
