@@ -4,7 +4,7 @@ flake to handle barcode readers
 
 ## How to use
 
-``` nix
+``` shell
 nix build
 sudo ./result/bin/barcode-reader /dev/input/by-id/usb-<your-barcode-scanner> | \
 while read line
