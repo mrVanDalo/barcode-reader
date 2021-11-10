@@ -8,9 +8,9 @@
 
 
 char keys[] = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXX XXXXXXXXXXXXXXXX";
-unsigned char barcode[100] = "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+//unsigned char barcode[100] = "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 
-int buf_index = 0;
+//int buf_index = 0;
 
 void INThandler() {
     exit(0);
@@ -19,8 +19,8 @@ void INThandler() {
 int main(int argc, char *argv[])
 {
     // init barcode
-    memset(barcode, 1, sizeof(barcode));
-    buf_index = 0;
+    //memset(barcode, 1, sizeof(barcode));
+    //buf_index = 0;
 
     //char devname[] = "/dev/input/by-id/usb-Belon.cn_2.4G_Wireless_Device_Belon_Smart-event-kbd";
     //int device = open(devname, O_RDONLY);
@@ -35,13 +35,14 @@ int main(int argc, char *argv[])
         read(device,&ev, sizeof(ev));
         if(ev.type == 1 && ev.value == 1) {
             if(ev.code == 28) {
-                printf("%s\n", barcode);
+                printf("\n");
                 fflush(stdout);
-                memset(barcode, 1, sizeof(barcode));
-                buf_index = 0;
+                //memset(barcode, 1, sizeof(barcode));
+                //buf_index = 0;
             } else {
-                barcode[buf_index] = keys[ev.code];
-                buf_index++;
+                //barcode[buf_index] = keys[ev.code];
+                printf("%c", keys[ev.code]);
+                //buf_index++;
             }
         }
     }
