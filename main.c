@@ -8,27 +8,21 @@
 
 
 char keys[] = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXX XXXXXXXXXXXXXXXX";
-//unsigned char barcode[100] = "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 
-//int buf_index = 0;
-
-void INThandler() {
+void signal_handler() {
     exit(0);
 }
 
 int main(int argc, char *argv[])
 {
-    // init barcode
-    //memset(barcode, 1, sizeof(barcode));
-    //buf_index = 0;
-
-    //char devname[] = "/dev/input/by-id/usb-Belon.cn_2.4G_Wireless_Device_Belon_Smart-event-kbd";
-    //int device = open(devname, O_RDONLY);
     int device = open(argv[1], O_RDONLY);
-
     struct input_event ev;
 
-    signal(SIGINT, INThandler);
+    signal(SIGINT, signal_handler);
+    signal(SIGPIPE, signal_handler);
+    signal(SIGHUP, signal_handler);
+    signal(SIGQUIT, signal_handler);
+    signal(SIGTERM, signal_handler);
 
     while(1)
     {
@@ -37,12 +31,8 @@ int main(int argc, char *argv[])
             if(ev.code == 28) {
                 printf("\n");
                 fflush(stdout);
-                //memset(barcode, 1, sizeof(barcode));
-                //buf_index = 0;
             } else {
-                //barcode[buf_index] = keys[ev.code];
                 printf("%c", keys[ev.code]);
-                //buf_index++;
             }
         }
     }
